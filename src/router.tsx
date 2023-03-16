@@ -1,12 +1,13 @@
 import React from 'react';
-import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
-import { About, Home, NotFound } from './pages';
+import { About, Home, NotFound } from '~/pages';
+import { MainLayout } from '~/layouts';
 
 export const router = createBrowserRouter([
   {
     path: '',
-    element: <Outlet />,
+    element: <MainLayout />,
     errorElement: <NotFound />,
     children: [
       { path: '', element: <Home /> },

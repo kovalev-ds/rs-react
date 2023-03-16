@@ -5,7 +5,6 @@ const Home = () => {
   return (
     <div>
       <SearchBar onSearch={(term) => console.log(term)} />
-      <span>Home Page</span>
     </div>
   );
 };

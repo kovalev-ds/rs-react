@@ -1,5 +1,7 @@
 import React from 'react';
 
+const SEARCH_KEY = 'search-key-value';
+
 interface SearchBarProps {
   onSearch: (value: string) => void;
 }
@@ -11,7 +13,11 @@ interface SearchBarState {
 class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   constructor(props: SearchBarProps) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: localStorage.getItem(SEARCH_KEY) ?? '' };
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem(SEARCH_KEY, this.state.value);
   }
 
   componentDidUpdate(): void {
