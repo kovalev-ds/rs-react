@@ -1,21 +1,15 @@
-.container {
-  width: min(90%, 1280px);
-  margin-inline: auto;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply w-[min(90%,1280px)] mx-auto;
+  }
 }
 
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.gap-x-3 {
-  column-gap: 0.75rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+@layer base {
+  body {
+    @apply bg-slate-50;
+  }
 }

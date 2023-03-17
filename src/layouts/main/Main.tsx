@@ -6,7 +6,7 @@ type MainProps = React.PropsWithChildren;
 const Main: React.FC<MainProps> = () => {
   return (
     <>
-      <header>
+      <header className="shadow bg-white">
         <div className="container">
           <nav className="flex items-center gap-x-3 py-4">
             <Link to="/">Home</Link>
@@ -14,7 +14,7 @@ const Main: React.FC<MainProps> = () => {
           </nav>
         </div>
       </header>
-      <main>
+      <main className="py-4">
         <div className="container">
           <Outlet />
         </div>
