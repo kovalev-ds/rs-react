@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 type MainProps = React.PropsWithChildren;
 
@@ -9,8 +9,12 @@ const Main: React.FC<MainProps> = () => {
       <header className="shadow bg-white">
         <div className="container">
           <nav className="flex items-center gap-x-3 py-4">
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+              Home
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+              About
+            </NavLink>
           </nav>
         </div>
       </header>
