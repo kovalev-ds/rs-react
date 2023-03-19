@@ -1,1 +1,1 @@
-# rs-react
+# GH-pages
