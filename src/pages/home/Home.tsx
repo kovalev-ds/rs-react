@@ -1,9 +1,7 @@
 import React from 'react';
-import Card from '~/components/Card/Card';
-import List from '~/components/List/List';
-import SearchBar from '~/components/SearchBar/SearchBar';
 
-import products from '~/data/products.json';
+import { List } from '~/components';
+import { SearchBar, Card, products } from '~/features/products';
 import { Product } from '~/types';
 
 const Home = () => {

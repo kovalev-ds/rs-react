@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { AppRoutes } from '~/routes';
 
 type MainProps = React.PropsWithChildren;
 
@@ -9,10 +10,22 @@ const Main: React.FC<MainProps> = () => {
       <header className="shadow bg-white">
         <div className="container">
           <nav className="flex items-center gap-x-3 py-4">
-            <NavLink to="/" className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+            <NavLink
+              to={AppRoutes.home}
+              className={({ isActive }) => (isActive ? 'font-bold' : '')}
+            >
               Home
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+            <NavLink
+              to={AppRoutes.events}
+              className={({ isActive }) => (isActive ? 'font-bold' : '')}
+            >
+              Events
+            </NavLink>
+            <NavLink
+              to={AppRoutes.about}
+              className={({ isActive }) => (isActive ? 'font-bold' : '')}
+            >
               About
             </NavLink>
           </nav>
