@@ -1,13 +1,13 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import { About, Home, NotFound, Form } from '~/pages';
+import { About, Events, Home, NotFound } from '~/pages';
 import { MainLayout } from '~/layouts';
 
 export const enum AppRoutes {
   home = '',
   about = 'about',
-  form = 'form',
+  events = 'events',
 }
 
 export const routes: RouteObject[] = [
@@ -17,7 +17,7 @@ export const routes: RouteObject[] = [
     children: [
       { path: AppRoutes.home, element: <Home /> },
       { path: AppRoutes.about, element: <About /> },
-      { path: AppRoutes.form, element: <Form /> },
+      { path: AppRoutes.events, element: <Events /> },
       { path: '*', element: <NotFound /> },
     ],
   },

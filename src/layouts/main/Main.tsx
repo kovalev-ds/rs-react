@@ -17,16 +17,16 @@ const Main: React.FC<MainProps> = () => {
               Home
             </NavLink>
             <NavLink
+              to={AppRoutes.events}
+              className={({ isActive }) => (isActive ? 'font-bold' : '')}
+            >
+              Events
+            </NavLink>
+            <NavLink
               to={AppRoutes.about}
               className={({ isActive }) => (isActive ? 'font-bold' : '')}
             >
               About
-            </NavLink>
-            <NavLink
-              to={AppRoutes.form}
-              className={({ isActive }) => (isActive ? 'font-bold' : '')}
-            >
-              Form
             </NavLink>
           </nav>
         </div>
