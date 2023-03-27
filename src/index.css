@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply w-[min(90%,1280px)] mx-auto;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50;
+  }
+}
