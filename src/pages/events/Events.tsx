@@ -27,14 +27,14 @@ class Events extends React.Component<EventsProps, EventsState> {
 
     setTimeout(() => {
       this.setState((state) => ({ ...state, isToastShown: false }));
-    }, 15000);
+    }, 5000);
   };
 
   render() {
     return (
       <div className="relative overflow-hidden">
         <div
-          className={`absolute right-0 top-0 transition-transform duration-300 ${
+          className={`absolute z-50 right-0 top-0 transition-transform duration-300 ${
             this.state.isToastShown ? 'translate-x-0' : 'translate-x-[150%]'
           }`}
         >
