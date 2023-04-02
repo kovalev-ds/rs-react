@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Product } from '~/types';
+import { Product } from '~/features/products/types';
 import { Rating } from '~/components';
 
 type CardProps = {

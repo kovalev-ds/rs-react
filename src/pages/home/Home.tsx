@@ -2,7 +2,7 @@ import React from 'react';
 
 import { List } from '~/components';
 import { SearchBar, Card, products } from '~/features/products';
-import { Product } from '~/types';
+import { Product } from '~/features/products/types';
 
 const Home = () => {
   return (

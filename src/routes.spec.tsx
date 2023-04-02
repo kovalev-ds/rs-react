@@ -15,6 +15,16 @@ describe('Router', () => {
     expect(screen.getByText('Home Page')).toBeInTheDocument();
   });
 
+  it('renders events page', async () => {
+    const router = createMemoryRouter(routes, { initialEntries: ['/events'] });
+
+    render(<RouterProvider router={router} />);
+
+    await screen.findByRole('grid');
+
+    expect(screen.getByRole('grid')).toBeInTheDocument();
+  });
+
   it('renders about page', async () => {
     const router = createMemoryRouter(routes, {
       initialEntries: ['/about'],
