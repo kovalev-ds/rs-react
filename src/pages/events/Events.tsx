@@ -30,7 +30,7 @@ const Events: FC = () => {
         <Toast content="The event was successfully created!" />
       </div>
 
-      <div className="grid grid-cols-[4fr,7fr] gap-x-6">
+      <div className="grid grid-cols-[4fr,7fr] gap-x-6" role="grid">
         <EventForm onSubmit={addEvent} />
         {events.length ? (
           <div className="grid grid-cols-3 auto-rows-min gap-2">

@@ -15,7 +15,7 @@ describe('Checkbox', () => {
   });
 
   it('renders correctly with custom props', () => {
-    render(<Checkbox id="my-checkbox" name="my-checkbox" checked />);
+    render(<Checkbox id="my-checkbox" name="my-checkbox" defaultChecked />);
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toHaveAttribute('id', 'my-checkbox');
     expect(checkbox).toHaveAttribute('name', 'my-checkbox');

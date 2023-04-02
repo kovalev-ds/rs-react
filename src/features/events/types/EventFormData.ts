@@ -2,9 +2,9 @@ export type EventFormData = {
   title: string;
   description: string;
   date: string;
-  isFree: string;
-  isOpenSky: string;
-  makeGifts: string;
+  isFree: boolean;
+  isOpenSky: boolean;
+  makeGifts: boolean;
   type: string;
-  image: File;
+  image: FileList;
 };
