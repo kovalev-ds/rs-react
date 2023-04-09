@@ -1,31 +1,23 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
-
-const SEARCH_KEY = 'search-key-value';
+import ArrowPathIcon from '@heroicons/react/24/solid/ArrowPathIcon';
 
 type SearchBarProps = {
+  search: string;
   onSearch: (value: string) => void;
+  isBusy: boolean;
 };
 
-const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
-  const [term, setTerm] = useState(() => localStorage.getItem(SEARCH_KEY) ?? '');
-
-  useEffect(() => {
-    onSearch(term);
-    return () => {
-      localStorage.setItem(SEARCH_KEY, term);
-    };
-  }, [term, onSearch]);
-
+const SearchBar: FC<SearchBarProps> = ({ search, onSearch, isBusy }) => {
   return (
     <div className="relative h-10 w-full">
       <div className="absolute top-2/4 right-3 grid h-5 w-5 -translate-y-2/4 place-items-center text-blue-gray-500">
-        <MagnifyingGlassIcon />
+        {isBusy ? <ArrowPathIcon className="animate-spin" /> : <MagnifyingGlassIcon />}
       </div>
       <input
         id="search-bar"
-        value={term}
-        onChange={(e) => setTerm(e.target.value)}
+        value={search}
+        onChange={(e) => onSearch(e.target.value)}
         type="text"
         className="peer h-full w-full rounded-[7px] border border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 [&:not(:placeholder-shown)]:border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0"
         placeholder=" "

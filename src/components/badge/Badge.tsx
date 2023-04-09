@@ -18,7 +18,9 @@ type BadgeProps = {
 
 const Badge: React.FC<BadgeProps> = ({ variant, content }) => {
   return (
-    <span className={`${variants[variant]} text-xs font-medium mr-2 px-2.5 py-0.5 rounded`}>
+    <span
+      className={`${variants[variant]} text-xs font-medium mr-2 px-2.5 py-0.5 rounded truncate`}
+    >
       {content}
     </span>
   );

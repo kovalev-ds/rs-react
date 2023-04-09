@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
-
 import {
-  List,
   Switcher,
   FileInput,
   Select,
@@ -14,21 +11,13 @@ import {
   FormControl,
   Checkbox,
 } from '~/components';
-
 import { EventFormData, Event } from '../../types';
 import { parseFormData } from '../../utils/parseFormData';
+import { options } from '../../consts/type-options';
 
 type EventFormProps = {
   onSubmit: (data: Event) => void;
 };
-
-const options = [
-  { value: 'conference', name: 'Conference' },
-  { value: 'seminar', name: 'Seminar' },
-  { value: 'workshop', name: 'Workshop' },
-  { value: 'concert', name: 'Concert' },
-  { value: 'exhibition', name: 'Exhibition' },
-];
 
 const EventForm: FC<EventFormProps> = ({ onSubmit }) => {
   const {
@@ -47,11 +36,9 @@ const EventForm: FC<EventFormProps> = ({ onSubmit }) => {
     <form onSubmit={handleSubmit(submit)} noValidate autoComplete="off">
       <div className="shadow rounded-lg overflow-hidden">
         <div className="bg-white px-4 py-5 sm:p-6">
-          {/* Title Form Control starts*/}
           <FormControl>
-            <FormLabel htmlFor="title">Title</FormLabel>
+            <FormLabel>Title</FormLabel>
             <Input
-              id="title"
               placeholder="Enter Event Title"
               {...register('title', { required: true, minLength: 4, maxLength: 24 })}
             />
@@ -61,44 +48,25 @@ const EventForm: FC<EventFormProps> = ({ onSubmit }) => {
               </FormErrorMessage>
             )}
           </FormControl>
-
-          {/* Description Form Control starts*/}
           <FormControl>
-            <FormLabel htmlFor="description">Description</FormLabel>
+            <FormLabel>Description</FormLabel>
             <Textarea
-              id="description"
               rows={2}
               placeholder="Provide description of the event"
               {...register('description', { required: true })}
             />
             {errors.description && <FormErrorMessage>Provide simple description</FormErrorMessage>}
           </FormControl>
-
-          {/* Date Form Controls starts*/}
           <FormControl>
-            <FormLabel htmlFor="date">Date</FormLabel>
-            <Input type="datetime-local" id="date" {...register('date', { required: true })} />
+            <FormLabel>Date</FormLabel>
+            <Input type="datetime-local" {...register('date', { required: true })} />
             {errors.date && <FormErrorMessage>Select Event Date</FormErrorMessage>}
           </FormControl>
-
-          {/* Type Form Control starts*/}
           <FormControl>
-            <FormLabel htmlFor="type">Event Type</FormLabel>
-            <Select id="type" {...register('type', { required: true })}>
-              <List
-                items={options}
-                fn={({ value, name }) => (
-                  <option key={value} value={value}>
-                    {name}
-                  </option>
-                )}
-              />
-            </Select>
+            <FormLabel>Event Type</FormLabel>
+            <Select options={options} {...register('type', { required: true })} />
             {errors.type && <FormErrorMessage>Provide type of Event</FormErrorMessage>}
           </FormControl>
-
-          {/* Radio File Form Control starts*/}
-
           <FormControl>
             <FormLabel>Additional Information</FormLabel>
             <Switcher label="Free" {...register('isFree')} />
@@ -113,9 +81,6 @@ const EventForm: FC<EventFormProps> = ({ onSubmit }) => {
               </div>
             </div>
           </FormControl>
-
-          {/* Image File Form Control starts*/}
-
           <FormControl>
             <FileInput {...register('image', { required: true })} />
             {errors.image && <FormErrorMessage>Provide image for the Event</FormErrorMessage>}
