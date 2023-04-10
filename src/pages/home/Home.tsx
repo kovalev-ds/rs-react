@@ -21,7 +21,7 @@ const Home = () => {
   }, [run, search]);
 
   return (
-    <div>
+    <>
       <h1 hidden>Home Page</h1>
       <div className="space-y-4">
         <div className="lg:max-w-sm lg:mx-auto">
@@ -39,7 +39,7 @@ const Home = () => {
         </div>
       </div>
       <Outlet />
-    </div>
+    </>
   );
 };
 
