@@ -16,18 +16,22 @@ export const routes: RouteObject[] = [
     element: <MainLayout />,
     children: [
       {
-        path: AppRoutes.home,
-        element: <Home />,
+        errorElement: <NotFound />,
         children: [
           {
-            path: ':id',
-            element: <HomeDialog />,
+            path: AppRoutes.home,
+            element: <Home />,
+            children: [
+              {
+                path: ':id',
+                element: <HomeDialog />,
+              },
+            ],
           },
+          { path: AppRoutes.about, element: <About /> },
+          { path: AppRoutes.events, element: <Events /> },
         ],
       },
-      { path: AppRoutes.about, element: <About /> },
-      { path: AppRoutes.events, element: <Events /> },
-      { path: '*', element: <NotFound /> },
     ],
   },
 ];

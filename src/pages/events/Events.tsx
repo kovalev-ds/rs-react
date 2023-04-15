@@ -1,14 +1,14 @@
 import React, { FC, useState } from 'react';
 
 import { List, Toast } from '~/components';
-import { EventForm, EventCard, Event, EventEmptyCard } from '~/features/events';
+import { EventForm, EventCard, Event, EventEmptyCard, useFeatureState } from '~/features/events';
 
 const Events: FC = () => {
+  const { events, createEvent } = useFeatureState();
   const [isToastShown, setIsToastShown] = useState<boolean>(false);
-  const [events, setEvents] = useState<Event[]>([]);
 
   const addEvent = (event: Event) => {
-    setEvents((prev) => [...prev, event]);
+    createEvent(event);
     showToast();
   };
 

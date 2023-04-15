@@ -1,30 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
 
 import { AppRoutes } from '~/routes';
 import { Popup } from '~/components';
-import { useAsync, useLockBodyScroll } from '~/hooks';
-import { Character, findById } from '~/features/characters';
+import { useLockBodyScroll } from '~/hooks';
+import { useGetCharacterByIdQuery } from '~/features/characters';
 
 const Dialog = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const {
-    run,
-    state: { data, isBusy },
-  } = useAsync<Character | null>(null);
 
-  useEffect(() => {
-    run(() => findById(Number(id)));
-  }, [id, run]);
+  const { id = '' } = useParams();
+
+  const { data } = useGetCharacterByIdQuery(id);
 
   useLockBodyScroll();
 
   const close = () => {
     navigate(AppRoutes.home);
   };
-  console.log(data);
 
   return (
     <Popup isOpen={true} onClose={close}>
@@ -36,12 +30,20 @@ const Dialog = () => {
           <div className="grid grid-cols-2 gap-x-4">
             <div>
               <img src={data.image} alt={data.name} />
-              <div>{data.status}</div>
             </div>
             <div>
-              <h2>name: {data.name}</h2>
-              <div>gender: {data.gender}</div>
-              <div>origin: {data.origin.name}</div>
+              <h2 className="font-semibold text-2xl">{data.name}</h2>
+              <div className="text-gray-700 font-light">
+                <div>
+                  status: <span className="font-regular">{data.status}</span>
+                </div>
+                <div>
+                  gender: <span className="font-regular">{data.gender}</span>
+                </div>
+                <div>
+                  origin: <span className="font-regular">{data.origin.name}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

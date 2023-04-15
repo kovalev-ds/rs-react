@@ -10,5 +10,5 @@ export const findByName = (name: string) => {
 };
 
 export const findById = (id: number) => {
-  return request<Character>(API_URL + '/' + id);
+  return request<Character>(API_URL + '/character/' + id);
 };

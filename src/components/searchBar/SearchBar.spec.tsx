@@ -1,48 +1,35 @@
 import React from 'react';
-
-import { it, describe, expect, vi, beforeEach } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { render, fireEvent, screen } from '@testing-library/react';
-
 import SearchBar from './SearchBar';
 
 describe('SearchBar', () => {
   const onSearchMock = vi.fn();
 
-  beforeEach(() => {
-    localStorage.clear();
-    onSearchMock.mockClear();
+  it('should render properly', () => {
+    render(<SearchBar search="" onSearch={onSearchMock} isBusy={false} />);
+
+    expect(screen.getByLabelText('Quick Search')).toBeInTheDocument();
   });
 
-  it('should update input value on change', () => {
-    render(<SearchBar onSearch={() => {}} />);
+  it('should call onSearch with the entered value when the input changes', () => {
+    render(<SearchBar search="" onSearch={onSearchMock} isBusy={false} />);
 
-    const searchInput = screen.getByLabelText('Quick Search');
-    fireEvent.change(searchInput, { target: { value: 'react' } });
+    fireEvent.change(screen.getByLabelText('Quick Search'), { target: { value: 'test' } });
 
-    expect(searchInput).toHaveValue('react');
+    expect(onSearchMock).toHaveBeenCalledTimes(1);
+    expect(onSearchMock).toHaveBeenCalledWith('test');
   });
 
-  it('should call onSearch with the current value of the input when the component updates', () => {
-    render(<SearchBar onSearch={onSearchMock} />);
-    fireEvent.change(screen.getByLabelText('Quick Search'), { target: { value: 'test value' } });
-    expect(onSearchMock).toHaveBeenCalledWith('test value');
+  it('should display the loading icon when isBusy is true', async () => {
+    render(<SearchBar search="" onSearch={onSearchMock} isBusy={true} />);
+
+    expect(screen.getByTestId('spin')).toBeInTheDocument();
   });
 
-  it('should set the value of the input to the value from localStorage', () => {
-    localStorage.setItem('search-key-value', 'test value');
+  it('should display the magnifying glass icon when isBusy is false', () => {
+    render(<SearchBar search="" onSearch={onSearchMock} isBusy={false} />);
 
-    render(<SearchBar onSearch={onSearchMock} />);
-
-    expect(screen.getByLabelText('Quick Search')).toHaveValue('test value');
-  });
-
-  it('should update localStorage when the component unmounts', () => {
-    const { unmount } = render(<SearchBar onSearch={onSearchMock} />);
-
-    fireEvent.change(screen.getByLabelText('Quick Search'), { target: { value: 'test value' } });
-
-    unmount();
-
-    expect(localStorage.getItem('search-key-value')).toBe('test value');
+    expect(screen.queryByTestId('spin')).not.toBeInTheDocument();
   });
 });

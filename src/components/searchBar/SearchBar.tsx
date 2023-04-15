@@ -12,7 +12,11 @@ const SearchBar: FC<SearchBarProps> = ({ search, onSearch, isBusy }) => {
   return (
     <div className="relative h-10 w-full">
       <div className="absolute top-2/4 right-3 grid h-5 w-5 -translate-y-2/4 place-items-center text-blue-gray-500">
-        {isBusy ? <ArrowPathIcon className="animate-spin" /> : <MagnifyingGlassIcon />}
+        {isBusy ? (
+          <ArrowPathIcon className="animate-spin" data-testid="spin" />
+        ) : (
+          <MagnifyingGlassIcon />
+        )}
       </div>
       <input
         id="search-bar"
