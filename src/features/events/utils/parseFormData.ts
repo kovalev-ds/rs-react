@@ -7,7 +7,7 @@ export const parseFormData = (data: EventFormData): Event => {
     id: uuidv4(),
     title,
     description,
-    date: new Date(date),
+    date,
     isFree,
     isOpenSky,
     makeGifts,

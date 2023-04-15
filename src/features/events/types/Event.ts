@@ -2,7 +2,7 @@ export type Event = {
   id: string;
   title: string;
   description: string;
-  date: Date;
+  date: string;
   isFree: boolean;
   isOpenSky: boolean;
   makeGifts: boolean;

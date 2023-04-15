@@ -20,7 +20,7 @@ const EventCard: React.FC<EventCardProps> = ({ item }) => {
       <div className="p-5">
         <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{title}</h5>
         <p className="mb-1 font-bold text-sm text-gray-700">
-          {Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(date)}
+          {Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(Date.parse(date))}
         </p>
         <p className="mb-3 font-normal text-gray-700">{description}</p>
 

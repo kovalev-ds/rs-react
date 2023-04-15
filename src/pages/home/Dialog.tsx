@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
 
 import { AppRoutes } from '~/routes';
 import { Popup } from '~/components';
-import { useAsync, useLockBodyScroll } from '~/hooks';
-import { Character, findById } from '~/features/characters';
+import { useLockBodyScroll } from '~/hooks';
+import { useGetCharacterByIdQuery } from '~/features/characters';
 
 const Dialog = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const {
-    run,
-    state: { data },
-  } = useAsync<Character | null>(null);
 
-  useEffect(() => {
-    run(() => findById(Number(id)));
-  }, [id, run]);
+  const { id = '' } = useParams();
+
+  const { data } = useGetCharacterByIdQuery(id);
 
   useLockBodyScroll();
 
