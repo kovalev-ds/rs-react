@@ -5,7 +5,7 @@ import { About, Events, Home, NotFound, HomeDialog } from '~/pages';
 import { MainLayout } from '~/layouts';
 
 export const enum AppRoutes {
-  home = '/',
+  home = '',
   about = 'about',
   events = 'events',
 }

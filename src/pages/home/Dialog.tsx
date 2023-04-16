@@ -12,12 +12,14 @@ const Dialog = () => {
 
   const { id = '' } = useParams();
 
-  const { data } = useGetCharacterByIdQuery(id);
+  const { data, isError } = useGetCharacterByIdQuery(id);
+
+  if (isError) throw new Response('Not Found', { status: 404 });
 
   useLockBodyScroll();
 
   const close = () => {
-    navigate(AppRoutes.home);
+    navigate('/' + AppRoutes.home);
   };
 
   return (

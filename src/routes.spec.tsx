@@ -1,14 +1,21 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 
 import { routes } from './routes';
+import { store } from './store';
 
 describe('Router', () => {
   it('renders home page', async () => {
     const router = createMemoryRouter(routes, { initialEntries: ['/'] });
 
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     await screen.findByText('Home Page');
 
@@ -18,7 +25,11 @@ describe('Router', () => {
   it('renders events page', async () => {
     const router = createMemoryRouter(routes, { initialEntries: ['/events'] });
 
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     await screen.findByRole('grid');
 
@@ -30,7 +41,11 @@ describe('Router', () => {
       initialEntries: ['/about'],
     });
 
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     await screen.findByRole('heading');
 
@@ -42,7 +57,11 @@ describe('Router', () => {
       initialEntries: ['/not-found-page'],
     });
 
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     await screen.findByRole('heading');
 
